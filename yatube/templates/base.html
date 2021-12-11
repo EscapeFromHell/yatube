@@ -1,0 +1,22 @@
+<!DOCTYPE html> 
+<html lang="ru">
+{% load static %}
+<head>
+<title>
+  {% block title %}
+    {{ title }}
+  {% endblock %}
+</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">  
+</head>
+  <body>
+    <header>
+      {% include "includes/header.html" %}
+    </header>
+    {% block content %}
+    {% endblock  %}
+    <footer class="border-top text-center py-3">
+      {% include "includes/footer.html" %} 
+    </footer>
+  </body>
+</html>
