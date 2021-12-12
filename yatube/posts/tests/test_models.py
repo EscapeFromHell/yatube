@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from ..models import Group, Post, User
+from ..models import Follow, Group, Post, User
 
 USER = 'User'
 TITLE = 'Тестовая группа'
@@ -32,3 +32,23 @@ class PostModelTest(TestCase):
         expected_title = group.title
         self.assertEqual(expected_text, str(post.text))
         self.assertEqual(expected_title, str(group.title))
+
+
+class FollowModelTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        User.objects.create_user(username=USER)
+        User.objects.create_user(username='User_2')
+        Follow.objects.create(
+            author=User.objects.get(username=USER),
+            user=User.objects.get(username='User_2')
+        )
+
+    def follow_test(self):
+        author = Follow.objects.get(author=USER).author
+        expected_author = 'author'
+        user = Follow.objects.get(author=USER).user
+        expected_user = 'user'
+        self.assertEqual(expected_author, author.author)
+        self.assertEqual(expected_user, user)
