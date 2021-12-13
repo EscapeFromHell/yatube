@@ -115,3 +115,5 @@ CACHES = {
         'LOCATION': '127.0.0.1:8000',
     }
 }
+
+EMPTY_VALUE_DISPLAY = '-пусто-'

@@ -66,11 +66,12 @@
   {% endif %}
   {% if post.comments %}
   {% for comment in comments %}
+  {% with comment_author=comment.author.username %}
   <div class="media mb-4">
     <div class="media-body">
       <h5 class="mt-0">
-        <a href="{% url 'posts:profile' comment.author.username %}">
-          {{ comment.author.username }}
+        <a href="{% url 'posts:profile' comment_author %}">
+          {{ comment_author }}
         </a>
       </h5>
         <p>
@@ -78,6 +79,7 @@
         </p>
       </div>
     </div>
+    {% endwith %}
     {% endfor %}
     {% endif %} 
     </main>
